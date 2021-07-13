@@ -2,7 +2,7 @@
 # CSPBND_equalsize: Circular Strongly Partially Balance Neighbor Design for 
 # block of equal size(K)
 
-# Algorithm from paper:
+# Algorithm from paper444:
 
 # Huria Ali, Khadija Noreen, Muhammad Sajid, Mahmood Ul Hassan, Zahra Noreen and 
 # Rashid Ahmed (2021). Algorithms to Obtain Strongly Partially Balanced Neighbor
