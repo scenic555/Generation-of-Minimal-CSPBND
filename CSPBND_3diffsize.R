@@ -4,7 +4,7 @@
 
 # Algorithm from paper:
 
-# Huria Ali, Khadija Noreen, Muhammad Sajid, Mahmood Ul Hassan, Zahra Noreen and 
+# Huria Ali, Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, Zahra Noreen and 
 # Rashid Ahmed (2021). Algorithms to Obtain Strongly Partially Balanced Neighbor
 # Designs in Minimal Circular Blocks. 
 # Coded by Huria et al., 2021-2022 
@@ -171,9 +171,9 @@ delmin<-function(z){
 
 CSPBND_3diffsize<-function(k,i,D,sk2,sk3){
   if(length(k)>3 | length(k)<3){stop("length(k)=3")}
-  if(any(k<=3)!=0) stop("k=Block size: Each block size must be greater than 3")
+  #if(any(k<=3)!=0) stop("k=Block size: Each block size must be greater than 3")
   if(i<=0) stop("i=must be a positive integer")
-  if(k[1]<k[2] | k[2]<k[3] |  k[1]<k[3]  ) stop("k1>K2>K3")
+  if(k[1]<k[2] | k[2]<k[3] |  k[1]<k[3] | k[3]<3 ) stop("k1>K2>K3>2")
 
   setClass( "stat_test", representation("list"))
   
@@ -414,6 +414,64 @@ if(D==2 & sk2==2 & sk3==2){
 new("stat_test", x)  
 }
 
+##################################################################
+# Generation of design using sets of cyclical shifts
+###################################################################
+# H is an output object from CSPBND_3diffsize
+# The output is called using the design_CSPBND to generate design
+
+design_CSPBND<-function(H){
+  
+  setClass( "CSPBND_design", representation("list"))
+  setMethod("show", "CSPBND_design", function(object) {
+    row <- paste(rep("=", 51), collapse = "")
+    cat(row, "\n")
+    cat("Following is minimal CSPBNDs for", "v=" ,object$R[1], "and","k=",object$R[2], "\n")
+    row <- paste(rep("=", 51), collapse = "")
+    cat(row, "\n")
+    for(i in 1:length(ss)){
+      W<-ss[[i]]
+      nr<-dim(W)[1]
+      for(j in 1:nr){
+        print(object$Design[[i]][[j]])
+        cat("\n\n")
+      }}
+  })  
+  
+  v<-H$R[1]
+  k<-H$R[2]
+  ss<-H$S  
+  treat<-(1:v)-1
+  fn<-(1:v)
+  G<-list()
+  
+  
+  for(j in 1:length(ss)){ 
+    W<-ss[[j]]
+    nr<-dim(W)[1]
+    nc<-dim(W)[2]
+    D<-list()
+    
+    for(i in 1:nr){
+      dd<-c()
+      d1<-matrix(treat,(nc+1),v,byrow = T)
+      ss1<-cumsum(c(0,W[i,]))
+      dd2<-d1+ss1
+      dd<-rbind(dd,dd2)
+      rr<-dd[which(dd>=v)]%%v
+      dd[which(dd>=v)]<-rr
+      colnames(dd)<-paste("B",fn, sep="")
+      rownames(dd)<-rep("",(nc+1))
+      fn<-fn+v
+      D[[i]]<-dd
+    }
+    G[[j]]<-D
+    
+  }
+  
+  x<-list(Design=G,R=H$R)
+  new("CSPBND_design", x)
+}
 
 
 ###############################################################################

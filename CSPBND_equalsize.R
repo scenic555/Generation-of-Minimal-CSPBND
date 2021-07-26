@@ -4,7 +4,7 @@
 
 # Algorithm from paper:
 
-# Huria Ali, Khadija Noreen, Muhammad Sajid, Mahmood Ul Hassan, Zahra Noreen and 
+# Huria Ali, Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, Zahra Noreen and 
 # Rashid Ahmed (2021). Algorithms to Obtain Strongly Partially Balanced Neighbor
 # Designs in Minimal Circular Blocks. 
 # Coded by Huria et al, 2021-2022 
