@@ -146,10 +146,10 @@ minimal CSPBNDs for", "v=" ,object$R[1], ",","k1=",object$R[2],
   })
   
   if(D==1 & sk2==1){  
-    v=2*i*k[1]+2*k[2]+2 ; m=(v-2)/2
+    v=2*i*k[1]+2*k[2] ; m=(v-2)/2
     
     if(m%%4==0){
-      A<-1:m
+      A<-0:m
       A1<-grouping2(A,k,v,i,sk2)
       A2<-c(v,k);names(A2)<-c("V","K1","K2")
       x<-list(S=A1$B1,G=A1$B3,R=A2,A=A)
@@ -333,3 +333,7 @@ design_CSPBND<-function(H){
 (H<-CSPBND_2diffsize(k=c(20,10),i=6,D=2,sk2=2))
 (D<-design_CSPBND(H))
 
+
+
+
+(H<-CSPBND_2diffsize(k=c(9,4),i=1,D=1,sk2=1))
