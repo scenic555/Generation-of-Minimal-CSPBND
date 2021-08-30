@@ -157,7 +157,7 @@ minimal CSPBNDs for", "v=" ,object$R[1], ",","k1=",object$R[2],
     }
     
     if(m%%4==3){
-      A<-c(1:((3*m-1)/4),((3*m+7)/4),((3*m+11)/4):m, (5*(m+1)/4))
+      A<-c(0:((3*m-1)/4),((3*m+7)/4),((3*m+11)/4):m, (5*(m+1)/4))
       A1<-grouping2(A,k,v,i,sk2)
       A2<-c(v,k);names(A2)<-c("V","K1","K2")
       x<-list(S=A1$B1,G=A1$B3,R=A2,A=A)
